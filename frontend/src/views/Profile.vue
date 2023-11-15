@@ -9,7 +9,7 @@
                             <ProfileInfo :user="profileData" /> 
                         </div>
                         <div style="width: 30%;text-align: right;">
-                            <FollowButton :user="profileData" :following="profileData.is_following_count === 1 ? true : false" @followUser="handleFollowed" class="is-small" />
+                            <FollowButton v-if="profileData.username !== loggedInUser.username" :user="profileData" :following="profileData.is_following_count === 1 ? true : false" @followUser="handleFollowed" class="is-small" />
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -87,24 +87,16 @@
                 followers:[],
                 following:[],
                 profileData:{},
+                loggedInUser:{}
             }
         },
         watch: {
             username:function() {
-                this.tweetTab = true,
-                this.followerTab= false;
-                this.followingTab= false;
-                this.getProfileData();
-                this.getTweetList();
-                this.getFollowerList();
-                this.getFollowingList();
+                this.groupAllMethod();
             }
         },
         created() {
-            this.getProfileData();
-            this.getTweetList();
-            this.getFollowerList();
-            this.getFollowingList();
+            this.groupAllMethod();
         },
 
         methods: {
@@ -173,6 +165,17 @@
             handleFollowed(user) {
                 console.log(user);
             },
+            groupAllMethod()
+            {
+                this.tweetTab = true,
+                this.followerTab= false;
+                this.followingTab= false;
+                this.getProfileData();
+                this.getTweetList();
+                this.getFollowerList();
+                this.getFollowingList();
+                this.loggedInUser = User.userInfo();
+            }
 
         },
 
