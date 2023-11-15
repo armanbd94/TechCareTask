@@ -15,12 +15,22 @@ Instructions on how to install and set up the project.
 git clone https://github.com/armanbd94/TechCareTask.git
 
 # Change to the project directory
-cd TechCareTask
+cd TechCareTask 
+
+# Change to the project backend directory
+cd backend
 
 # Install dependencies for laravel 10
 composer install
 
+# Rename .env.example to .env then run
+php artisan key:generate
+
+# Generate JWT Secret Key
+php artisan jwt:secret
+
 # Install dependencies for vue 3
+cd frontend
 npm install
 
 # Create a database like tech_care and then import the database from database folder
