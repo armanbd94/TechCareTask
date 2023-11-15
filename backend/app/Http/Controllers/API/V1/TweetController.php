@@ -91,7 +91,7 @@ class TweetController extends Controller
             $tweet = Tweet::with('user')
             ->withCount('likes')
             ->findOrFail($id);
-            if(!$tweet->isEmpty())
+            if($tweet)
             {
                 $data = [
                     'status' => true,

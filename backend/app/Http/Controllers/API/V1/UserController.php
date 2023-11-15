@@ -28,10 +28,10 @@ class UserController extends Controller
             if($users)
             {
                 $data['status'] = true;
-                $data['message'] = 'Successfully removed from following list';
+                $data['message'] = 'Found Data';
                 $data['data'] = $users;
             }else{
-                $data['message'] = 'Failed to remove from following list';
+                $data['message'] = 'No Data Found';
             }
         } catch (\Throwable $th) {
             $data['message'] = $th->getMessage();
